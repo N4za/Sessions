@@ -1,12 +1,20 @@
 <?php
 session_start();
-session_destroy();
 if(isset($_SESSION["login"])){
   echo "BIENVENIDO_".$_SESSION["login"];
 }else{
   echo "CUENTA DESACTIVADA";
 }
- ?>
+if(isset($_COOKIE["username"])){
+  echo "BIENVENIDO_".$_COOKIE["username"];
+    unset($_COOKIE["username"]);
+    setcookie("username", null, -1);
+    unset($_COOKIE["password"]);
+    setcookie("password", null, -1);
+}else{
+  echo "SIN COOKIE";
+}
+?>
  <!DOCTYPE html>
  <html>
     <head>
